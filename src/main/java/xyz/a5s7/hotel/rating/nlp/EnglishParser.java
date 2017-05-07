@@ -15,7 +15,6 @@ import xyz.a5s7.hotel.rating.domain.Semantics;
 
 import java.io.StringReader;
 import java.util.*;
-import java.util.function.BiFunction;
 
 public class EnglishParser {
 
@@ -64,24 +63,49 @@ public class EnglishParser {
         return valuedDependencies;
     }
 
-    public List<IndexedWord> getAdjectives(List<String> topics, List<TypedDependency> depType, BiFunction<TypedDependency, String, Boolean> f) {
+    public Map<IndexedWord, PhraseAdd> filter(List<IndexedWord> adjs, Semantics semantics) {
+        //could apply lemmatization before checking against semantics
+        //TODO
+//        for (IndexedWord adj : adjs) {
+//            adj.tag()
+//        }
+        return null;
+    }
+
+
+    public List<IndexedWord> getAdjectives(List<String> topics, Map<String, List<TypedDependency>> valuedDependencies) {
         List<IndexedWord> characteristics = new ArrayList<>();
-        for (TypedDependency typedDependency : depType) {
+        for (TypedDependency typedDependency : valuedDependencies.get("nsubj")) {
             for (String topic : topics) {
                 String t = topic.toLowerCase();
-                if (f.apply(typedDependency, t)) {
+                if (typedDependency.dep().value().contains(t) && typedDependency.gov().tag().startsWith("JJ")) {
                     characteristics.add(typedDependency.gov());
                     break;
                 }
             }
         }
 
+        for (TypedDependency typedDependency : valuedDependencies.get("amod")) {
+            for (String topic : topics) {
+                String t = topic.toLowerCase();
+                if (typedDependency.gov().value().contains(t) && typedDependency.dep().tag().startsWith("JJ")) {
+                    characteristics.add(typedDependency.dep());
+                    break;
+                }
+            }
+        }
+
+        List<IndexedWord> conj = new ArrayList<>();
+        for (IndexedWord characteritic : characteristics) {
+            for (TypedDependency typedDependency : valuedDependencies.get("conj")) {
+                if (typedDependency.gov().equals(characteritic)) {
+                    conj.add(typedDependency.dep());
+                }
+            }
+        }
+        characteristics.addAll(conj);
+
         return characteristics;
     }
 
-    public Map<IndexedWord, PhraseAdd> filter(List<IndexedWord> adjs, Semantics semantics) {
-        //could apply lemmatization before checking against semantics
-        //TODO
-        return null;
-    }
 }

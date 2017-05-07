@@ -2,9 +2,12 @@ package xyz.a5s7.hotel.rating.nlp;
 
 import com.google.common.collect.ImmutableList;
 import edu.stanford.nlp.ling.HasWord;
+import edu.stanford.nlp.ling.IndexedWord;
+import edu.stanford.nlp.trees.TypedDependency;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -31,5 +34,18 @@ public class EnglishParserTest {
         ImmutableList<List<HasWord>> sentences = englishParser.getSentences("Staff is more than helpful in most situations. ");
         assertTrue(englishParser.hasTopics(ImmutableList.of("staff", "personnel"), sentences.get(0)));
         assertFalse(englishParser.hasTopics(ImmutableList.of("restaurant", "cafe"), sentences.get(0)));
+    }
+
+    @Test
+    public void shouldReturnAdjectivesForTopic() throws Exception {
+        ImmutableList<List<HasWord>> sentences = englishParser.getSentences("This amazing hotel was rather clean and quite close, but not very nice");
+        Map<String, List<TypedDependency>> valuedDependencies = englishParser.getValuedDependencies(sentences.get(0));
+
+        List<IndexedWord> adjs = englishParser.getAdjectives(ImmutableList.of("hotel"), valuedDependencies);
+        assertEquals(4, adjs.size());
+        assertEquals("clean", adjs.get(0).value());
+        assertEquals("amazing", adjs.get(1).value());
+        assertEquals("close", adjs.get(2).value());
+        assertEquals("nice", adjs.get(3).value());
     }
 }

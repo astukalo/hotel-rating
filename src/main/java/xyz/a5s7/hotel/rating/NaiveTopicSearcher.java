@@ -49,20 +49,9 @@ public class NaiveTopicSearcher implements TopicSearcher {
                 if (englishParser.hasTopics(topics, sentence)) {
                     Map<String, List<TypedDependency>> valuedDependencies = englishParser.getValuedDependencies(sentence);
 
-                    List<IndexedWord> adjs = englishParser.getAdjectives(topics,
-                            valuedDependencies.get("nsubj"),
-                            (typedDependency, topic) ->
-                                    typedDependency.dep().value().contains(topic) && typedDependency.gov().tag().startsWith("JJ"));
-                    //could apply lemmatization before checking against semantics
-                    adjs.addAll(
-                            englishParser.getAdjectives(topics,
-                                    valuedDependencies.get("amod"),
-                                    (typedDependency, topic) ->
-                                            typedDependency.gov().value().contains(topic) && typedDependency.dep().tag().startsWith("JJ"))
-                    );
+                    List<IndexedWord> adjs = englishParser.getAdjectives(topics, valuedDependencies);
 
                     Map<IndexedWord, PhraseAdd> filtered = englishParser.filter(adjs, semantics);
-
 
                     Statistics statistics = new Statistics();
                     statistics.setReview(review);
