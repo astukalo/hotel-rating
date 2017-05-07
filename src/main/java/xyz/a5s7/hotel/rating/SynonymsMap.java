@@ -7,6 +7,6 @@ import java.util.List;
 public class SynonymsMap {
     public List<String> findSynonyms(String topic) {
         //TODO implement
-        return ImmutableList.of(topic);
+        return ImmutableList.of(topic.toLowerCase());
     }
 }

@@ -6,8 +6,10 @@ import java.io.File;
 import java.io.IOException;
 
 public class DomainParser {
+    private ObjectMapper mapper = new ObjectMapper();
+
+    //TODO move to Hotel
     public Hotel fromJson(File json) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(json, Hotel.class);
     }
 }

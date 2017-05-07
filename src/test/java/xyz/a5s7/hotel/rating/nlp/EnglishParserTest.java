@@ -26,4 +26,10 @@ public class EnglishParserTest {
         assertEquals("Staff is more than helpful in most situations .", Utils.asString(sentences.get(1)));
     }
 
+    @Test
+    public void shouldFindSentenceWithTopic() throws Exception {
+        ImmutableList<List<HasWord>> sentences = englishParser.getSentences("Staff is more than helpful in most situations. ");
+        assertTrue(englishParser.hasTopics(ImmutableList.of("staff", "personnel"), sentences.get(0)));
+        assertFalse(englishParser.hasTopics(ImmutableList.of("restaurant", "cafe"), sentences.get(0)));
+    }
 }

@@ -3,6 +3,7 @@ package xyz.a5s7.hotel.rating;
 import com.google.common.collect.ImmutableList;
 import org.junit.Test;
 import xyz.a5s7.hotel.rating.domain.Review;
+import xyz.a5s7.hotel.rating.domain.Semantics;
 import xyz.a5s7.hotel.rating.stats.SentenceStatistics;
 import xyz.a5s7.hotel.rating.stats.Statistics;
 
@@ -13,7 +14,7 @@ import static org.junit.Assert.*;
 public class TopicSearcherTest {
 
 
-    private TopicSearcher topicSearcher = new TopicSearcher();
+    private TopicSearcher topicSearcher = new NaiveTopicSearcher();
 
     @Test
     public void findReviewsForTopic() throws Exception {
@@ -29,7 +30,8 @@ public class TopicSearcherTest {
                 "As holiday Inn advises..... No surprises.");
         ArrayList<Review> reviews = new ArrayList<>();
         reviews.add(r);
-        Collection<Statistics> stats = topicSearcher.findReviewsForTopic(ImmutableList.of("staff"), reviews);
+        Semantics semantics = new Semantics();
+        Collection<Statistics> stats = topicSearcher.findReviewsForTopic(ImmutableList.of("staff"), reviews, semantics);
         Statistics statistics = stats.iterator().next();
         assertEquals(r, statistics.getReview());
 
