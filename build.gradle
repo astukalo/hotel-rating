@@ -12,7 +12,10 @@ repositories {
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.7'
+    compile group: 'com.google.guava', name: 'guava', version: '11.0.2'
 
+    compile "edu.stanford.nlp:stanford-corenlp:3.7.0"
+    compile 'edu.stanford.nlp:stanford-corenlp:3.7.0:models'
 
     testCompile 'junit:junit:4.12'
 }

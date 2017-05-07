@@ -1,0 +1,15 @@
+{
+    "positive": [
+        { "phrase": "good", "value": 1 },
+        { "phrase": "bad", "value": 1 }
+    ],
+    "negative": [
+        { "phrase": "problem", "value": 1 },
+        { "phrase": "unfriendly", "value": 1 }
+    ],
+    "intensifier": [
+        { "phrase": "somewhat", "multiplier": 1.2 },
+        { "phrase": "quite", "multiplier": 1.5 },
+        { "phrase": "rather", "multiplier": 1.5 }
+    ]
+}

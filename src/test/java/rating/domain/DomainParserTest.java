@@ -2,7 +2,7 @@ package rating.domain;
 
 import org.junit.Test;
 import xyz.a5s7.hotel.rating.domain.Hotel;
-import xyz.a5s7.hotel.rating.domain.Parser;
+import xyz.a5s7.hotel.rating.domain.DomainParser;
 import xyz.a5s7.hotel.rating.domain.Review;
 
 import java.io.File;
@@ -11,13 +11,13 @@ import java.util.Iterator;
 
 import static org.junit.Assert.assertEquals;
 
-public class ParserTest {
-    Parser parser = new Parser();
+public class DomainParserTest {
+    DomainParser domainParser = new DomainParser();
 
     @Test
     public void fromJson() throws Exception {
         File reviewFile = new File(this.getClass().getResource("/review_test.json").getFile());
-        Hotel hotel = parser.fromJson(reviewFile);
+        Hotel hotel = domainParser.fromJson(reviewFile);
         Collection<Review> reviews = hotel.getReviews();
         assertEquals(2, reviews.size());
         assertEquals("77923", hotel.getId());
