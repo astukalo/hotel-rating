@@ -1,0 +1,45 @@
+{
+  "Reviews": [
+    {
+      "Ratings": {
+        "Service": "4",
+        "Cleanliness": "4",
+        "Overall": "4.0",
+        "Value": "4",
+        "Location": "5",
+        "Rooms": "4"
+      },
+      "AuthorLocation": "Philadelphia",
+      "Title": "“Excellent location for business travelers staying in LA.”",
+      "Author": "amacwow",
+      "ReviewID": "UR127417978",
+      "Content": "Hotel is clean and very close to airport. Staff is more than helpful in most situations. Restaurant is fine, but I would suggest eating out for breakfast as their breakfast menu is extremely high priced. $28 for two and one of us only had toast and juice. Their lunch and dinners are more in line with what cost should be. Overall a good experience and I have been staying there for years. As holiday Inn advises..... No surprises.",
+      "Date": "April 7, 2012"
+    },
+    {
+      "Ratings": {
+        "Service": "3",
+        "Cleanliness": "4",
+        "Overall": "3.0",
+        "Value": "3",
+        "Sleep Quality": "4",
+        "Rooms": "3",
+        "Location": "3"
+      },
+      "AuthorLocation": "Rochdale, United Kingdom",
+      "Title": "“City Centre Holiday Inn”",
+      "Author": "robinhenshaw",
+      "ReviewID": "UR127319807",
+      "Content": "Very convenient for LAX (free shuttle). New very large hotel. The staff try their best but it's very impersonal. Good restaurant, excellent breakfast, nice little bar. Room fine. Quite good deal on LA tour from consierge. Small pool (did not use). No grounds - hotel entrance rather squeezed in among existing businesses. But reasonable value.",
+      "Date": "April 5, 2012"
+    }
+  ],
+  "HotelInfo": {
+    "Name": "Holiday Inn Los Angeles International Airport",
+    "HotelURL": "/ShowUserReviews-g32655-d77923-Reviews-Holiday_Inn_Los_Angeles_International_Airport-Los_Angeles_California.html",
+    "Price": "$121 - $171*",
+    "Address": "<address><span rel=\"v:address\"><span dir=\"ltr\"><span class=\"street-address\" property=\"v:street-address\">9901 La Cienega Boulevard</span>, <span class=\"locality\"><span property=\"v:locality\">Los Angeles</span>, <span property=\"v:region\">CA</span> <span property=\"v:postal-code\">90045</span></span> </span></span></address>",
+    "HotelID": "77923",
+    "ImgURL": "http://media-cdn.tripadvisor.com/media/photo-s/02/25/22/b0/hotel-exterior.jpg"
+  }
+}
