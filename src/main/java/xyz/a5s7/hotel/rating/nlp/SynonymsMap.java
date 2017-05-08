@@ -1,4 +1,4 @@
-package xyz.a5s7.hotel.rating;
+package xyz.a5s7.hotel.rating.nlp;
 
 import com.google.common.collect.ImmutableList;
 

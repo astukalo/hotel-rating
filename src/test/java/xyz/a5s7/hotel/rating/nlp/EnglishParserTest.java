@@ -9,15 +9,16 @@ import org.junit.Test;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class EnglishParserTest {
-
     private EnglishParser englishParser = new EnglishParser();
 
     @Test
     public void shouldReturnSentences() throws Exception {
-        ImmutableList<List<HasWord>> sentences = englishParser.getSentences("Hotel is clean and very close to airport. " +
+        List<List<? extends HasWord>> sentences = englishParser.getSentences("Hotel is clean and very close to airport. " +
                 "Staff is more than helpful in most situations. " +
                 "Restaurant is fine, but I would suggest eating out for " +
                 "breakfast as their breakfast menu is extremely high priced. " +
@@ -31,14 +32,14 @@ public class EnglishParserTest {
 
     @Test
     public void shouldFindSentenceWithTopic() throws Exception {
-        ImmutableList<List<HasWord>> sentences = englishParser.getSentences("Staff is more than helpful in most situations. ");
+        List<List<? extends HasWord>> sentences = englishParser.getSentences("Staff is more than helpful in most situations. ");
         assertTrue(englishParser.hasTopics(ImmutableList.of("staff", "personnel"), sentences.get(0)));
         assertFalse(englishParser.hasTopics(ImmutableList.of("restaurant", "cafe"), sentences.get(0)));
     }
 
     @Test
     public void shouldReturnAdjectivesForTopic() throws Exception {
-        ImmutableList<List<HasWord>> sentences = englishParser.getSentences("This amazing hotel was rather clean and quite close, but not very nice");
+        List<List<? extends HasWord>> sentences = englishParser.getSentences("This amazing hotel was rather clean and quite close, but not very nice");
         Map<String, List<TypedDependency>> valuedDependencies = englishParser.getValuedDependencies(sentences.get(0));
 
         List<IndexedWord> adjs = englishParser.getAdjectives(ImmutableList.of("hotel"), valuedDependencies);
@@ -47,5 +48,16 @@ public class EnglishParserTest {
         assertEquals("amazing", adjs.get(1).value());
         assertEquals("close", adjs.get(2).value());
         assertEquals("nice", adjs.get(3).value());
+    }
+
+    @Test
+    public void shouldFindIntensifiers() throws Exception {
+        List<List<? extends HasWord>> sentences = englishParser.getSentences("This amazing hotel was rather clean and quite close, but not very nice");
+        Map<String, List<TypedDependency>> valuedDependencies = englishParser.getValuedDependencies(sentences.get(0));
+
+        final List<IndexedWord> intensifiers = englishParser.findIntensifiers("nice", valuedDependencies);
+        for (IndexedWord word : intensifiers) {
+            assertTrue(word.value().equals("not") || word.value().equals("very"));
+        }
     }
 }

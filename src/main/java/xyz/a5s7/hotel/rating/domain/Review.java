@@ -35,7 +35,7 @@ public class Review {
         return "Review{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
+//                ", content='" + content + '\'' +
                 '}';
     }
 

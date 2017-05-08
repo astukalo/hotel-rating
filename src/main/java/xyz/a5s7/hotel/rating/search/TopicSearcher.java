@@ -1,7 +1,5 @@
-package xyz.a5s7.hotel.rating;
+package xyz.a5s7.hotel.rating.search;
 
-import com.google.common.collect.ImmutableList;
-import edu.stanford.nlp.ling.HasWord;
 import xyz.a5s7.hotel.rating.domain.Review;
 import xyz.a5s7.hotel.rating.domain.Semantics;
 import xyz.a5s7.hotel.rating.stats.Statistics;

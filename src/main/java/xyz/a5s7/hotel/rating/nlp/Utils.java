@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Utils {
-    public static String asString(List<HasWord> sentence) {
+    public static String asString(List<? extends HasWord> sentence) {
         return sentence.stream()
-                .map(i -> i.toString())
+                .map(i -> i.word())
                 .collect(Collectors.joining(" "));
     }
 }
